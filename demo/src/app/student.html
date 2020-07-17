@@ -1,0 +1,82 @@
+<div class="container">
+    <div [hidden]="submitted">
+    
+    <h1>Student Registration Form</h1>
+      
+    <form (ngSubmit)="onSubmit()" #studentForm="ngForm">
+
+        <br>
+ <form class="form-horizontal" action="/action_page.php"></form>
+   <div class="form-group">
+    <label class="control-label col-sm-2" for="name">First Name:</label> 
+     <div class="col-sm-10">
+    <input type="text" class="form-control" studentID="first_name" required
+                  [(ngModel)]="student.first_name" name="first_name"  #name="ngModel">
+      <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+             Name is required
+    </div>
+    </div>
+   </div>
+    <br>
+    <br>
+   
+   <div class="form-group">
+   <label class="control-label col-sm-2" for="name">Last Name:</label>  
+   <div class="col-sm-10">
+   <input type="text" class="form-control" studentID="last_name" required
+                  [(ngModel)]="student.last_name" name="last_name" #name="ngModel">
+    <div [hidden]="name.valid || name.pristine"  class="alert alert-danger">
+             Name is required
+    </div>
+    </div>
+    </div>
+    <br>
+    <br>
+    <div class="form-group">
+    <label class="control-label col-sm-2" for="email">Email:</label> 
+    <div class="col-sm-10">
+    <input type="text" class="form-control" studentID="email" required
+                  [(ngModel)]="student.email" name="email" #name="ngModel">
+    <div [hidden]="name.valid || name.pristine"  class="alert alert-danger">
+             Email is required
+    </div>
+    </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+
+    
+    <button type="submit" style="background-color: blue;" class="btn btn-success" [disabled]="!studentForm.form.valid">Submit New</button>
+    &nbsp;&nbsp;&nbsp;
+    <button (click) = "onPutSubmit()" style="background-color: green;"class="btn btn-success" [disabled]="!studentForm.form.valid">Submit Edited</button>
+    </form>
+ </div>
+
+    <br>
+    <br>
+    <br>
+   
+    <table border="1"> 
+        <tr *ngFor="let student of studentList">
+        <td>{{student.first_name}}&nbsp;&nbsp;</td>
+        <td>{{student.last_name}}&nbsp;&nbsp;</td>
+        <td>{{student.email}}&nbsp;&nbsp;</td>
+        <td><span (click)="onEditClick($event, student)">&nbsp; &nbsp; <u> Edit </u> &nbsp; &nbsp; </span></td>
+        <td><span (click)="onDeleteClick($event, student)">&nbsp;&nbsp;<u>Delete</u> &nbsp;</span></td>
+        </tr> 
+    </table>
+
+    <br>
+    <br>
+    <br>
+   
+   
+    <h2><a [routerLink] = "'/home'">Home</a> | <a [routerLink] = "'/about'">About</a> | <a [routerLink] = "'/course'">Courses</a> </h2>
+    <router-outlet></router-outlet>
+
+    
+
+
+
